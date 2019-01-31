@@ -1,16 +1,16 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
+	"github.com/gorilla/mux"
+	"github.com/shuza/kubernates-go-grpc/pd"
+	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"log"
-	"kubernates-go-grpc/pd"
-	"github.com/gorilla/mux"
 	"net/http"
-	"encoding/json"
 	"strconv"
-	"fmt"
 	"time"
-	"golang.org/x/net/context"
 )
 
 /**

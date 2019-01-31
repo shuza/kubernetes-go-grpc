@@ -1,12 +1,12 @@
 package main
 
 import (
-	"net"
-	"log"
-	"kubernates-go-grpc/pd"
+	"github.com/shuza/kubernates-go-grpc/pd"
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	"log"
+	"net"
 )
 
 /**
