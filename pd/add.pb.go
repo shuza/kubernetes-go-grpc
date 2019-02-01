@@ -116,17 +116,16 @@ func init() {
 func init() { proto.RegisterFile("add.proto", fileDescriptor_077cd88a1973142f) }
 
 var fileDescriptor_077cd88a1973142f = []byte{
-	// 147 bytes of a gzipped FileDescriptorProto
+	// 144 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4c, 0x4c, 0x49, 0xd1,
 	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2a, 0x48, 0x52, 0xd2, 0xe0, 0xe2, 0x72, 0x4c, 0x49,
 	0x09, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0xe2, 0xe1, 0x62, 0x4c, 0x94, 0x60, 0x54, 0x60,
 	0xd4, 0x60, 0x09, 0x62, 0x4c, 0x04, 0xf1, 0x92, 0x24, 0x98, 0x20, 0xbc, 0x24, 0x25, 0x55, 0x2e,
 	0x6e, 0xb0, 0xca, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x31, 0x2e, 0xb6, 0xa2, 0xd4, 0xe2,
-	0xd2, 0x9c, 0x12, 0xa8, 0x7a, 0x28, 0xcf, 0xc8, 0x8a, 0x8b, 0xcb, 0xdd, 0xd9, 0x25, 0x38, 0xb5,
-	0xa8, 0x2c, 0x33, 0x39, 0x55, 0x48, 0x87, 0x8b, 0xdd, 0x39, 0x3f, 0xb7, 0xa0, 0xb4, 0x24, 0x55,
-	0x88, 0x4f, 0xaf, 0x20, 0x49, 0x0f, 0x61, 0x97, 0x14, 0x3f, 0x9c, 0x0f, 0x31, 0x51, 0x89, 0x21,
-	0x89, 0x0d, 0xec, 0x2e, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc3, 0xfb, 0x7e, 0xf2, 0xa4,
-	0x00, 0x00, 0x00,
+	0xd2, 0x9c, 0x12, 0xa8, 0x7a, 0x28, 0xcf, 0xc8, 0x0a, 0x6c, 0x60, 0x70, 0x6a, 0x51, 0x59, 0x66,
+	0x72, 0xaa, 0x90, 0x0e, 0x17, 0xbb, 0x73, 0x7e, 0x6e, 0x41, 0x69, 0x49, 0xaa, 0x10, 0x9f, 0x5e,
+	0x41, 0x92, 0x1e, 0xc2, 0x2e, 0x29, 0x7e, 0x38, 0x1f, 0x62, 0xa2, 0x12, 0x43, 0x12, 0x1b, 0xd8,
+	0x5d, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xbb, 0x3f, 0x3b, 0xb7, 0xa4, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -137,64 +136,64 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// GCDServiceClient is the client API for GCDService service.
+// AddServiceClient is the client API for AddService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type GCDServiceClient interface {
+type AddServiceClient interface {
 	Compute(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
 }
 
-type gCDServiceClient struct {
+type addServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewGCDServiceClient(cc *grpc.ClientConn) GCDServiceClient {
-	return &gCDServiceClient{cc}
+func NewAddServiceClient(cc *grpc.ClientConn) AddServiceClient {
+	return &addServiceClient{cc}
 }
 
-func (c *gCDServiceClient) Compute(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
+func (c *addServiceClient) Compute(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
 	out := new(AddResponse)
-	err := c.cc.Invoke(ctx, "/pb.GCDService/Compute", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.AddService/Compute", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GCDServiceServer is the server API for GCDService service.
-type GCDServiceServer interface {
+// AddServiceServer is the server API for AddService service.
+type AddServiceServer interface {
 	Compute(context.Context, *AddRequest) (*AddResponse, error)
 }
 
-func RegisterGCDServiceServer(s *grpc.Server, srv GCDServiceServer) {
-	s.RegisterService(&_GCDService_serviceDesc, srv)
+func RegisterAddServiceServer(s *grpc.Server, srv AddServiceServer) {
+	s.RegisterService(&_AddService_serviceDesc, srv)
 }
 
-func _GCDService_Compute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AddService_Compute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GCDServiceServer).Compute(ctx, in)
+		return srv.(AddServiceServer).Compute(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GCDService/Compute",
+		FullMethod: "/pb.AddService/Compute",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GCDServiceServer).Compute(ctx, req.(*AddRequest))
+		return srv.(AddServiceServer).Compute(ctx, req.(*AddRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _GCDService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.GCDService",
-	HandlerType: (*GCDServiceServer)(nil),
+var _AddService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.AddService",
+	HandlerType: (*AddServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Compute",
-			Handler:    _GCDService_Compute_Handler,
+			Handler:    _AddService_Compute_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

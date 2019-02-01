@@ -48,7 +48,7 @@ func main() {
 		ctx, cancel := context.WithTimeout(context.TODO(), time.Minute)
 		defer cancel()
 
-		req := &pb.GCDRequest{A: a, B: b}
+		req := &pb.AddRequest{A: a, B: b}
 		if resp, err := addClient.Compute(ctx, req); err == nil {
 			msg := fmt.Sprintf("Summation is %d", resp.Result)
 			json.NewEncoder(w).Encode(msg)

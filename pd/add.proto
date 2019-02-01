@@ -20,7 +20,7 @@ message AddResponse {
     uint64 result = 1;
 }
 
-service GCDService {
+service AddService {
     rpc Compute (AddRequest) returns (AddResponse) {
     }
 }

@@ -33,11 +33,10 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
 	}
-
 }
 
-func (s *server) Compute(cxt context.Context, r *pb.GCDRequest) (*pb.GCDResponse, error) {
-	result := &pb.GCDResponse{}
+func (s *server) Compute(cxt context.Context, r *pb.AddRequest) (*pb.AddResponse, error) {
+	result := &pb.AddResponse{}
 	result.Result = r.A + r.B
 
 	logMessage := fmt.Sprintf("A: %d   B: %d     sum: %d", r.A, r.B, result.Result)
