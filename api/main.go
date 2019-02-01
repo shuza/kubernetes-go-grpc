@@ -24,15 +24,15 @@ import (
 
 func main() {
 	//	Connect to GCD service
-	conn, err := grpc.Dial("localhost:3000", grpc.WithInsecure())
+	conn, err := grpc.Dial("add-service:3000", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Dial Failed: %v", err)
 	}
-	gcdClient := pb.NewGCDServiceClient(conn)
+	addClient := pb.NewGCDServiceClient(conn)
 
 	routes := mux.NewRouter()
 	routes.HandleFunc("/", indexHandler).Methods("GET")
-	routes.HandleFunc("/gcd/{a}/{b}", func(w http.ResponseWriter, r *http.Request) {
+	routes.HandleFunc("/add/{a}/{b}", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json; charset=UFT-8")
 
 		vars := mux.Vars(r)
@@ -49,8 +49,8 @@ func main() {
 		defer cancel()
 
 		req := &pb.GCDRequest{A: a, B: b}
-		if resp, err := gcdClient.Compute(ctx, req); err == nil {
-			msg := fmt.Sprintf("GCD Result is %d", resp.Result)
+		if resp, err := addClient.Compute(ctx, req); err == nil {
+			msg := fmt.Sprintf("Summation is %d", resp.Result)
 			json.NewEncoder(w).Encode(msg)
 		} else {
 			msg := fmt.Sprintf("Internal server error: %s", err.Error())

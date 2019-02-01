@@ -1,8 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/shuza/kubernates-go-grpc/pd"
-	context "golang.org/x/net/context"
+	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
@@ -36,10 +37,11 @@ func main() {
 }
 
 func (s *server) Compute(cxt context.Context, r *pb.GCDRequest) (*pb.GCDResponse, error) {
-	a, b := r.A, r.B
-	for b != 0 {
-		a, b = b, a%b
-	}
+	result := &pb.GCDResponse{}
+	result.Result = r.A + r.B
 
-	return &pb.GCDResponse{Result: a}, nil
+	logMessage := fmt.Sprintf("A: %d   B: %d     sum: %d", r.A, r.B, result.Result)
+	log.Println(logMessage)
+
+	return result, nil
 }
