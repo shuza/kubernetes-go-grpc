@@ -24,7 +24,7 @@ import (
 
 func main() {
 	//	Connect to GCD service
-	conn, err := grpc.Dial("add-service:3000", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:3000", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Dial Failed: %v", err)
 	}
