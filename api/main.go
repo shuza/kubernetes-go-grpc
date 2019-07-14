@@ -46,7 +46,7 @@ func main() {
 		}
 
 		if errConn != nil {
-			json.NewEncoder(w).Encode("Can't connect to add service")
+			json.NewEncoder(w).Encode("Failed to connect add service")
 		}
 
 		ctx, cancel := context.WithTimeout(context.TODO(), time.Minute)
