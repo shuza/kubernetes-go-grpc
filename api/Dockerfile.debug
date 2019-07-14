@@ -1,0 +1,10 @@
+FROM golang
+
+RUN go get -u github.com/go-delve/delve/cmd/dlv
+RUN mkdir app
+WORKDIR /app
+COPY app .
+EXPOSE 40000
+EXPOSE 8080
+
+ENTRYPOINT ["/go/bin/dlv", "--listen=:40000", "--headless=true", "--api-version=2", "exec", "./app"]

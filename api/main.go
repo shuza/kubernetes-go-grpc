@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/shuza/kubernetes-go-grpc/pd"
+	log "github.com/sirupsen/logrus"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -24,9 +24,9 @@ import (
 
 func main() {
 	//	Connect to Add service
-	conn, err := grpc.Dial("add-service:3000", grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("Dial Failed: %v", err)
+	conn, errConn := grpc.Dial("add-service:3000", grpc.WithInsecure())
+	if errConn != nil {
+		log.Warnf("Dial Failed :  %v\n", errConn)
 	}
 	addClient := pb.NewAddServiceClient(conn)
 
@@ -43,6 +43,10 @@ func main() {
 		b, err := strconv.ParseUint(vars["b"], 10, 64)
 		if err != nil {
 			json.NewEncoder(w).Encode("Invalid parameter B")
+		}
+
+		if errConn != nil {
+			json.NewEncoder(w).Encode("Can't connect to add service")
 		}
 
 		ctx, cancel := context.WithTimeout(context.TODO(), time.Minute)
