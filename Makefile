@@ -12,8 +12,8 @@ deploy_api:
 	@echo "Deploying in kubernetes ..."
 	kubectl apply -f api-service.yaml
 
-.PHONY: debug_deploy
-debug_deploy:
+.PHONY: debug_deploy_api
+debug_deploy_api:
 	@echo "building api in debug mode..."
 	cd api \
 	&& eval $(minikube docker-env) \
@@ -21,3 +21,25 @@ debug_deploy:
 	&& docker build -f Dockerfile.debug -t api-debug . \
 	&& echo "Deploying in kubernetes ..." \
 	&& kubectl run --rm -i debug-api-deploy --image=api-debug --image-pull-policy=Never
+
+.PHONY: delete_debug_api
+delete_debug_api:
+	kubectl delete deployment debug-api-deploy
+
+.PHONY: delete_summation
+delete_summation:
+	@echo "Deleting add-service ..."
+	kubectl delete svc add-service
+	@echo "Deleting add-deployment ..."
+	kubectl delete deployment add-deployment
+
+.PHONY: delete_api
+delete_api:
+	@echo "Deleting api-service ..."
+	kubectl delete svc api-service
+	@echo "Deleting api-deployment"
+	kubectl delete deployment api-deployment
+
+.PHONY: delete_all
+delete_all: delete_debug_api delete_summation delete_api
+	@echo "Cleaned up ... :)"
