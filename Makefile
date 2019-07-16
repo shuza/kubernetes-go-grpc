@@ -42,4 +42,4 @@ delete_api:
 
 .PHONY: delete_all
 delete_all: delete_debug_api delete_summation delete_api
-	@echo "Cleaned up ... :)"
+	@echo "Cleaned up every thing ... :)"
