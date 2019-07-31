@@ -3,14 +3,14 @@ deploy_add:
 	@echo "Building docker image ..."
 	docker build . -t shuzasa/api-service:v1.0
 	@echo "Deploying in kubernetes ..."
-	kubectl apply -f summation-service.yaml
+	kubectl apply -f ./deployment/summation-service.yaml
 
 .PHONY: deploy_api
 deploy_api:
 	@echo "Building docker image ..."
 	docker push shuzasa/api-service:v1.0
 	@echo "Deploying in kubernetes ..."
-	kubectl apply -f api-service.yaml
+	kubectl apply -f ./deployment/api-service.yaml
 
 .PHONY: debug_deploy_api
 debug_deploy_api:
