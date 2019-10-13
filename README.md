@@ -6,4 +6,4 @@
 ](https://medium.com/@shuza.sa/debugging-go-application-inside-kubernetes-from-ide-7e63b013c46e)
 
 # Todo
-* Implement side car approch for load balance
+* Implement side car approch for load balance (Linkerd or Envoy)
