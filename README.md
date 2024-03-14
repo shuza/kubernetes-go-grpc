@@ -8,6 +8,7 @@
 # Todo
 * Implement side car approch for load balance (Linkerd or Envoy)
 * Add open tracing for example jeager
+* Add rate limit
 
 # Linkerd
 Linkerd has very good [doc](https://linkerd.io/2/getting-started/) about how to install it. Install it first.
