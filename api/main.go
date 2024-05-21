@@ -23,7 +23,7 @@ import (
 
 func main() {
 	//	Connect to Add service
-	conn, err := grpc.Dial("localhost:3000", grpc.WithInsecure())
+	conn, err := grpc.Dial("add-service:3000", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
