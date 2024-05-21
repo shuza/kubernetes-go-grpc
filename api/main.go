@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/shuza/kubernetes-go-grpc/pd"
+	"github.com/shuza/kubernetes-go-grpc/pb"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"net/http"
@@ -23,7 +23,7 @@ import (
 
 func main() {
 	//	Connect to Add service
-	conn, err := grpc.Dial("add-service:3000", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:3000", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
